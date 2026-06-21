@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Grupo 14 | Catálogo de Los Simpson</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="hero">
+    <nav class="topbar">
+      <div class="brand">
+        <span class="brand-icon">⚡</span>
+        <span>Grupo 14</span>
+      </div>
+      <a href="https://thesimpsonsapi.com/" target="_blank" rel="noopener">The Simpsons API</a>
+    </nav>
+
+    <section class="hero-content">
+      <p class="eyebrow">Desarrollo de Aplicaciones Web</p>
+      <h1>Catálogo interactivo de personajes de Los Simpson</h1>
+      <p>
+        Aplicación web desarrollada con HTML, CSS y JavaScript. Consume datos reales desde
+        The Simpsons API y presenta la información en tarjetas dinámicas.
+      </p>
+      <div class="hero-actions">
+        <a href="#catalogo" class="btn primary">Ver catálogo</a>
+        <button id="btnReload" class="btn secondary" type="button">Recargar API</button>
+      </div>
+    </section>
+  </header>
+
+  <main>
+    <section class="stats" aria-label="Resumen de la aplicación">
+      <article>
+        <strong id="totalCharacters">0</strong>
+        <span>Personajes consultados</span>
+      </article>
+      <article>
+        <strong>HTML + CSS + JS</strong>
+        <span>Tecnologías utilizadas</span>
+      </article>
+      <article>
+        <strong>REST API</strong>
+        <span>Consumo con fetch()</span>
+      </article>
+    </section>
+
+    <section id="catalogo" class="catalog-section">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Catálogo</p>
+          <h2>Personajes disponibles</h2>
+        </div>
+        <p id="apiStatus" class="status-pill">Esperando consulta...</p>
+      </div>
+
+      <form class="filters" id="filtersForm">
+        <label>
+          Buscar por nombre
+          <input id="searchInput" type="search" placeholder="Ejemplo: Homer" autocomplete="off" />
+        </label>
+
+        <label>
+          Género
+          <select id="genderFilter">
+            <option value="">Todos</option>
+            <option value="Male">Masculino</option>
+            <option value="Female">Femenino</option>
+          </select>
+        </label>
+
+        <label>
+          Estado
+          <select id="statusFilter">
+            <option value="">Todos</option>
+            <option value="Alive">Vivo</option>
+            <option value="Deceased">Fallecido</option>
+          </select>
+        </label>
+      </form>
+
+      <div id="loader" class="loader hidden">Cargando información desde la API...</div>
+      <div id="cardsContainer" class="cards"></div>
+
+      <div class="pagination">
+        <button id="prevPage" class="btn secondary" type="button">Anterior</button>
+        <span id="pageInfo">Página 1</span>
+        <button id="nextPage" class="btn secondary" type="button">Siguiente</button>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="characterDialog" class="dialog">
+    <button id="closeDialog" class="dialog-close" type="button" aria-label="Cerrar">×</button>
+    <div id="dialogContent"></div>
+  </dialog>
+
+  <footer>
+    <p>Trabajo práctico experimental | Grupo 14 | Desarrollo de Aplicaciones Web</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
