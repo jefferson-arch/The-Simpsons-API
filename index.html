@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Catálogo interactivo de personajes de Los Simpson desarrollado para el Grupo 14." />
+  <title>Grupo 14 | Personajes de Los Simpson</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header" id="inicio">
+    <nav class="navbar" aria-label="Navegación principal">
+      <a class="logo" href="#inicio" aria-label="Ir al inicio">
+        <span class="logo-text">Los Simpson</span>
+        <span class="group-badge">Grupo 14</span>
+      </a>
+
+      <button class="menu-toggle" id="menuToggle" type="button" aria-label="Abrir menú">☰</button>
+
+      <div class="nav-links" id="navLinks">
+        <a href="#personajes">Personajes</a>
+        <a href="#resumen">Resumen</a>
+        <a href="https://thesimpsonsapi.com/" target="_blank" rel="noopener">API oficial</a>
+      </div>
+    </nav>
+
+    <section class="hero-section">
+      <div class="hero-copy">
+        <span class="tag">Desarrollo de Aplicaciones Web</span>
+        <h1>Personajes de Springfield</h1>
+        <p>
+          Catálogo interactivo en español con búsqueda, filtros, paginación y detalles de personajes de Los Simpson.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#personajes">Explorar catálogo</a>
+          <button class="btn btn-secondary" id="btnReload" type="button">Actualizar datos</button>
+        </div>
+      </div>
+
+      <div class="hero-card" aria-hidden="true">
+        <div class="preview-window">
+          <div class="preview-top"><span></span><span></span><span></span></div>
+          <div class="preview-body">
+            <article>
+              <div class="mini-img yellow">HS</div>
+              <strong>Homer Simpson</strong>
+              <small>Inspector de seguridad</small>
+            </article>
+            <article>
+              <div class="mini-img blue">MS</div>
+              <strong>Marge Simpson</strong>
+              <small>Personaje principal</small>
+            </article>
+            <article>
+              <div class="mini-img red">BS</div>
+              <strong>Bart Simpson</strong>
+              <small>Estudiante de Springfield</small>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+  </header>
+
+  <main>
+    <section class="overview" id="resumen">
+      <div class="section-title centered">
+        <span class="tag">Resumen</span>
+        <h2>Aplicación web funcional y dinámica</h2>
+        <p>
+          La información se consulta desde una fuente externa y se presenta en una interfaz moderna, organizada y adaptable a distintos dispositivos.
+        </p>
+      </div>
+
+      <div class="overview-grid">
+        <article class="overview-card">
+          <div class="overview-icon">👥</div>
+          <strong id="totalCharacters">0</strong>
+          <p>Personajes cargados</p>
+        </article>
+        <article class="overview-card">
+          <div class="overview-icon">🖼️</div>
+          <strong id="totalPhotos">0</strong>
+          <p>Personajes con fotografía</p>
+        </article>
+        <article class="overview-card">
+          <div class="overview-icon">🔎</div>
+          <strong id="totalResults">0</strong>
+          <p>Resultados visibles</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="characters-section" id="personajes">
+      <div class="section-title centered">
+        <span class="tag">Catálogo</span>
+        <h2>Personajes disponibles</h2>
+        <p>Busca por nombre u ocupación y filtra los resultados según la información disponible.</p>
+      </div>
+
+      <form class="filters" id="filtersForm" autocomplete="off">
+        <label>
+          Buscar
+          <input id="searchInput" type="search" placeholder="Ejemplo: Homer, Lisa, profesor..." />
+        </label>
+
+        <label>
+          Género
+          <select id="genderFilter">
+            <option value="">Todos</option>
+            <option value="Male">Masculino</option>
+            <option value="Female">Femenino</option>
+          </select>
+        </label>
+
+        <label>
+          Estado
+          <select id="statusFilter">
+            <option value="">Todos</option>
+            <option value="Alive">Vivo</option>
+            <option value="Deceased">Fallecido</option>
+            <option value="Unknown">Desconocido</option>
+          </select>
+        </label>
+
+        <label>
+          Imagen
+          <select id="photoFilter">
+            <option value="">Todos</option>
+            <option value="withPhoto">Con foto</option>
+            <option value="withoutPhoto">Sin foto</option>
+          </select>
+        </label>
+      </form>
+
+      <div class="toolbar">
+        <p class="status-pill" id="apiStatus">Preparando consulta...</p>
+        <button class="btn btn-secondary small" id="btnClearFilters" type="button">Limpiar filtros</button>
+      </div>
+
+      <div class="loader hidden" id="loader">Cargando personajes...</div>
+      <p class="results-info" id="resultsInfo">Sin resultados cargados.</p>
+      <div class="cards-grid" id="cardsContainer"></div>
+
+      <div class="pagination">
+        <button class="btn btn-secondary" id="prevPage" type="button">Anterior</button>
+        <span id="pageInfo">Página 1</span>
+        <button class="btn btn-secondary" id="nextPage" type="button">Siguiente</button>
+      </div>
+    </section>
+  </main>
+
+  <dialog class="dialog" id="characterDialog">
+    <button class="dialog-close" id="closeDialog" type="button" aria-label="Cerrar">×</button>
+    <div id="dialogContent"></div>
+  </dialog>
+
+  <footer class="footer">
+    <p>Grupo 14 · Desarrollo de Aplicaciones Web · Docente: Ronald Henry Diaz Arrieta</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
